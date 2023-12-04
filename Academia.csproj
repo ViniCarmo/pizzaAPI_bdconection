@@ -132,7 +132,8 @@
     <Compile Include="DAL\LoginDaoComando.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="validacao\validaCEP.cs" />
+    <Compile Include="validacaoCEP\MostrarCEP.cs" />
+    <Compile Include="validacaoCEP\validaCEP.cs" />
     <EmbeddedResource Include="Apresentacao\Cadastro.resx">
       <DependentUpon>Cadastro.cs</DependentUpon>
     </EmbeddedResource>

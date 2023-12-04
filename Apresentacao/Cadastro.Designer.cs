@@ -229,8 +229,9 @@
             this.cepCadastro.Name = "cepCadastro";
             this.cepCadastro.Size = new System.Drawing.Size(205, 32);
             this.cepCadastro.TabIndex = 37;
+            this.cepCadastro.TextChanged += new System.EventHandler(this.cepCadastro_TextChanged);
             // 
-            // AcademiaCad
+            // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -253,8 +254,8 @@
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "AcademiaCad";
-            this.Text = "AcademiaCad";
+            this.Name = "Cadastro";
+            this.Text = "Cadastro";
             this.Load += new System.EventHandler(this.AcademiaCad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

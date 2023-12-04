@@ -1,5 +1,6 @@
 ﻿using Academia.controle;
 using Academia.validacao;
+using Academia.validacaoCEP;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,8 @@ namespace Academia
         {
             InitializeComponent();
         }
-        
+
+
         private void AcademiaCad_Load(object sender, EventArgs e)
         {
          
@@ -55,27 +57,25 @@ namespace Academia
 
             if (!string.IsNullOrWhiteSpace(cepCadastro.Text))
             {
-                validaCEP validaCEP = new validaCEP();
-                validaCEP.validacaoCEP(cepCadastro);
-    
-            Controle controle = new Controle();
+                ValidaCEP validaCEP = new ValidaCEP();
+                String tudo = validaCEP.ValidacaoCEP(cepCadastro);
+                MessageBox.Show(tudo);
+
+
+
+                Controle controle = new Controle();
             String mensagem =  controle.cadastrar(emailCadastro.Text, usuarioCadastro.Text, senhaCadastro.Text, cepCadastro.Text);
             if (controle.tem)
             {
                 MessageBox.Show(mensagem, "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Login academiaCadastro = new Login();
-                academiaCadastro.Show();
+                Login login = new Login();
+                login.Show();
             }
             else
             {
                 MessageBox.Show(controle.mensagem);
-
             }
-     } else
-            {
-                MessageBox.Show("Coloque um CEP válido!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-            }
+     }
  
         }
 
@@ -105,6 +105,11 @@ namespace Academia
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
         
+        }
+
+        private void cepCadastro_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

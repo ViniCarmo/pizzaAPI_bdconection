@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Academia.validacao;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -10,12 +11,12 @@ using System.Windows.Forms;
 
 namespace Academia.DAL
 {
-    internal class LoginDaoComando{
+    internal class LoginDaoComando {
         public bool tem = false;
         public String mensagem = "";
         SqlCommand cmd = new SqlCommand();
-        Conexao con = new Conexao(); 
-        SqlDataReader dr;   
+        Conexao con = new Conexao();
+        SqlDataReader dr;
 
         public bool verificarLogin(String login, String senha)
         {
@@ -24,7 +25,7 @@ namespace Academia.DAL
             cmd.Parameters.AddWithValue("@email", login);
             cmd.Parameters.AddWithValue("@senha", senha);
 
-            try{
+            try {
                 cmd.Connection = con.conectar();
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -36,37 +37,48 @@ namespace Academia.DAL
             }
             catch (SqlException)
             {
-                this.mensagem = "Erro no banc" +
-                    "" +
-                    "o de dados";
+                this.mensagem = "Erro no banco de dados";
             }
             return tem;
         }
 
         public String cadastrar(String email, String nome, String senha, String cep)
         {
-            tem = false;
-            //comando para inserir no banco
-            cmd.CommandText = "insert into logins values (@e,@n,@s,@c);";
-            cmd.Parameters.AddWithValue("@e",email);
-            cmd.Parameters.AddWithValue("@n", nome);
-            cmd.Parameters.AddWithValue("@s", senha);
-            cmd.Parameters.AddWithValue("@c", cep);
 
-            try
-            {
-                cmd.Connection = con.conectar();
-                cmd.ExecuteNonQuery();
-                con.desconectar();
-                this.mensagem = "Cadastrado com sucesso!";
-                tem = true;
-            }
-            catch (SqlException)
-            {
-                this.mensagem = "Erro com o banco de dados";
-            }
+            ValidaCEP validaCEP = new ValidaCEP();
 
-            return mensagem;
+            if (validaCEP.ValidacaoCEP(cep))
+            {
+                tem = false;
+                //comando para inserir no banco
+                cmd.CommandText = "insert into logins values (@e,@n,@s,@c);";
+                cmd.Parameters.AddWithValue("@e", email);
+                cmd.Parameters.AddWithValue("@n", senha);
+                cmd.Parameters.AddWithValue("@s", nome);
+                cmd.Parameters.AddWithValue("@c", cep);
+
+                try
+                {
+                    cmd.Connection = con.conectar();
+                    cmd.ExecuteNonQuery();
+                    con.desconectar();
+                    this.mensagem = "Cadastrado com sucesso!";
+                    tem = true;
+                }
+                catch (SqlException)
+                {
+                    this.mensagem = "Erro com o banco de dados";
+                }
+
+                return mensagem;
+            }else
+            {
+                
+                this.mensagem = "Por favor digite um CEP válido!";
+                return mensagem;
+           
+            }
+        }
         }
     }
-}
+

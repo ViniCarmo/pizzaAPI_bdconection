@@ -37,6 +37,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.mostraCep = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -53,6 +54,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -129,13 +131,23 @@
             this.pictureBox5.TabIndex = 9;
             this.pictureBox5.TabStop = false;
             // 
+            // mostraCep
+            // 
+            this.mostraCep.Location = new System.Drawing.Point(365, 327);
+            this.mostraCep.Multiline = true;
+            this.mostraCep.Name = "mostraCep";
+            this.mostraCep.Size = new System.Drawing.Size(423, 105);
+            this.mostraCep.TabIndex = 10;
+            this.mostraCep.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(821, 528);
+            this.ClientSize = new System.Drawing.Size(842, 528);
+            this.Controls.Add(this.mostraCep);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pictureBox4);
@@ -169,6 +181,7 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TextBox mostraCep;
     }
 }
 

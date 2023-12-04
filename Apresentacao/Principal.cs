@@ -1,4 +1,7 @@
 ﻿using Academia;
+using Academia.validacao;
+using Academia.validacaoCEP;
+using Academia.WSCorreios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,9 +19,10 @@ namespace PrincipalPag
         public Principal()
         {
             InitializeComponent();
+
         }
 
- 
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -49,6 +53,16 @@ namespace PrincipalPag
 
         }
 
-       
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+        
+        Cadastro cadastro = new Cadastro();
+        MostrarCEP mostrar = new MostrarCEP();
+
+    }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
